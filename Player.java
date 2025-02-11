@@ -1,5 +1,4 @@
 public class Player extends Square {
-  public static final double GRAVITY = 0.3;
 
   protected double speedX = 0;
   protected double speedY = 0;
@@ -17,7 +16,6 @@ public class Player extends Square {
     move(speedX, speedY);
     speedX *= 0.99;
     speedY *= 0.99;
-    accelerate(0, -GRAVITY);
   }
 
   public void accelerate(double accelerationX, double accelerationY) {
