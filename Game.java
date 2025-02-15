@@ -10,6 +10,7 @@ public class Game {
     f.add(gc);
     f.setSize(w, h);
     f.setTitle("Midterm Project");
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
     while (true) {
       f.repaint();
