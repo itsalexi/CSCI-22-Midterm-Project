@@ -4,18 +4,19 @@ import javax.swing.*;
 
 public class GameCanvas extends JPanel implements KeyListener {
   public static final double GRAVITY = 0.3;
-
   private int width;
   private int height;
   private Player player;
   private int speed;
   private Timer timer;
+  private boolean isRunning;
 
   public GameCanvas(int w, int h) {
     speed = 10;
     width = w;
     height = h;
     player = new Player(100, h - 72, 32);
+    isRunning = true;
     addKeyListener(this);
     setFocusable(true);
     timer = new Timer(16, new ActionListener() {
@@ -59,6 +60,10 @@ public class GameCanvas extends JPanel implements KeyListener {
 
       }
     }
+  }
+
+  public boolean isRunning(){
+    return isRunning;
   }
 
   @Override
