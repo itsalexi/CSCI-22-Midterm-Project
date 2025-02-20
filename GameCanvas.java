@@ -21,18 +21,10 @@ public class GameCanvas extends JPanel implements KeyListener {
     isRunning = true;
     addKeyListener(this);
     setFocusable(true);
-    timer = new Timer(16, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        updateGame();
-        repaint();
-      }
-    });
-    timer.start();
     ground = new Ground(10);
   }
 
-  private void updateGame() {
+  public void updateGame() {
     if (player.posY < height - 72) {
       player.accelerate(0, -GRAVITY);
     }
@@ -62,14 +54,14 @@ public class GameCanvas extends JPanel implements KeyListener {
   }
 
   public boolean isRunning(){
-    return isRunning;
+    return isRunning; 
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
   }
+ 
 
-  @Override
   public void keyTyped(KeyEvent e) {
   }
 

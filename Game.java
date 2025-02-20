@@ -12,6 +12,15 @@ public class Game {
     f.setTitle("Midterm Project");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
+    long initial = System.currentTimeMillis();
 
+    while (true) {
+      long current = System.currentTimeMillis();
+      if (current- initial > 1000/60) {
+        gc.updateGame();
+        f.repaint();
+        initial = current;
+      }
+    }
   }
 }
