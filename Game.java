@@ -3,8 +3,8 @@ import javax.swing.JFrame;
 public class Game {
   public static void main(String[] args) {
 
-    int w = 640;
-    int h = 480;
+    int w = 800;
+    int h = 600;
     JFrame f = new JFrame();
     GameCanvas gc = new GameCanvas(w, h);
 
