@@ -53,14 +53,13 @@ public class GameCanvas extends JPanel implements KeyListener {
     }
   }
 
-  public boolean isRunning(){
-    return isRunning; 
+  public boolean isRunning() {
+    return isRunning;
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
   }
- 
 
   public void keyTyped(KeyEvent e) {
   }
