@@ -4,12 +4,12 @@ import javax.swing.*;
 
 public class GameCanvas extends JPanel implements KeyListener {
   public static final double GRAVITY = 0.3;
-
   private int width;
   private int height;
   private Player player;
   private int speed;
   private Timer timer;
+  private boolean isRunning;
 
   private Ground ground;
 
@@ -18,6 +18,7 @@ public class GameCanvas extends JPanel implements KeyListener {
     width = w;
     height = h;
     player = new Player(100, h - 72, 32);
+    isRunning = true;
     addKeyListener(this);
     setFocusable(true);
     timer = new Timer(16, new ActionListener() {
@@ -52,18 +53,16 @@ public class GameCanvas extends JPanel implements KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      player.move(speed, 0);
-    }
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      player.move(-speed, 0);
-    }
     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
       if (player.speedY == 0) {
         player.accelerate(0, 10);
 
       }
     }
+  }
+
+  public boolean isRunning(){
+    return isRunning;
   }
 
   @Override
