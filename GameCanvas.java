@@ -48,12 +48,6 @@ public class GameCanvas extends JPanel implements KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      player.move(speed, 0);
-    }
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      player.move(-speed, 0);
-    }
     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
       if (player.speedY == 0) {
         player.accelerate(0, 10);

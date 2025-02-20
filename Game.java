@@ -13,13 +13,6 @@ public class Game {
     f.setTitle("Midterm Project");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
-    long deltaTime = System.currentTimeMillis();
-    while (gc.isRunning()) {
-      long currTime = System.currentTimeMillis();
-      if(currTime - deltaTime > 1000/FPS){
-        f.repaint();
-        deltaTime = currTime;
-      }
-    }
+
   }
 }
