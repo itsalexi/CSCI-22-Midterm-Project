@@ -13,6 +13,7 @@ public class Game {
     f.setTitle("Midterm Project");
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
+    f.setResizable(false);
     long initial = System.currentTimeMillis();
 
     while (gc.isRunning()) {

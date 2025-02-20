@@ -17,7 +17,7 @@ public class GameCanvas extends JPanel implements KeyListener {
     speed = 10;
     width = w;
     height = h;
-    player = new Player(100, h - 72, 32);
+    player = new Player(100, h - 64, 32);
     isRunning = true;
     addKeyListener(this);
     setFocusable(true);
@@ -25,12 +25,12 @@ public class GameCanvas extends JPanel implements KeyListener {
   }
 
   public void updateGame() {
-    if (player.posY < height - 72) {
+    if (player.posY < height - 64) {
       player.accelerate(0, -GRAVITY);
     }
     player.update();
-    if (player.posY > height - 72) {
-      player.setPosition(player.posX, height - 72);
+    if (player.posY > height - 64) {
+      player.setPosition(player.posX, height - 64);
       player.setSpeedY(0);
     }
   }
