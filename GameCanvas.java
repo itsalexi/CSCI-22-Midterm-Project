@@ -11,6 +11,8 @@ public class GameCanvas extends JPanel implements KeyListener {
   private int speed;
   private Timer timer;
 
+  private Ground ground;
+
   public GameCanvas(int w, int h) {
     speed = 10;
     width = w;
@@ -26,6 +28,7 @@ public class GameCanvas extends JPanel implements KeyListener {
       }
     });
     timer.start();
+    ground = new Ground(10);
   }
 
   private void updateGame() {
@@ -43,6 +46,8 @@ public class GameCanvas extends JPanel implements KeyListener {
   protected void paintComponent(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
     player.draw(g2d);
+    ground.draw(g2d);
+
   }
 
   @Override
