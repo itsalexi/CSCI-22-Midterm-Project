@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 import javax.swing.*;
 
 public class GameCanvas extends JPanel implements KeyListener {
@@ -38,6 +39,7 @@ public class GameCanvas extends JPanel implements KeyListener {
   @Override
   protected void paintComponent(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
+
     player.draw(g2d);
     ground.draw(g2d);
 
