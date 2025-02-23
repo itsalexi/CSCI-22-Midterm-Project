@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 public class GameCanvas extends JPanel implements KeyListener {
@@ -13,25 +12,31 @@ public class GameCanvas extends JPanel implements KeyListener {
   private boolean isRunning;
 
   private Ground ground;
+  private Mountain mountain;
+  private BackMountain mountain2;
+  private Background background;
 
   public GameCanvas(int w, int h) {
     speed = 10;
     width = w;
     height = h;
-    player = new Player(100, h - 64, 32);
+    player = new Player(100, h - 70, 32);
     isRunning = true;
     addKeyListener(this);
+    mountain = new Mountain(5, 110);
+    mountain2 = new BackMountain(3, 100);
+    background = new Background(0, 0);
     setFocusable(true);
     ground = new Ground(10);
   }
 
   public void updateGame() {
-    if (player.posY < height - 64) {
+    if (player.posY < height - 70) {
       player.accelerate(0, -GRAVITY);
     }
     player.update();
-    if (player.posY > height - 64) {
-      player.setPosition(player.posX, height - 64);
+    if (player.posY > height - 70) {
+      player.setPosition(player.posX, height - 70);
       player.setSpeedY(0);
     }
   }
@@ -40,8 +45,12 @@ public class GameCanvas extends JPanel implements KeyListener {
   protected void paintComponent(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
 
-    player.draw(g2d);
+    background.draw(g2d);
     ground.draw(g2d);
+
+    mountain2.draw(g2d);
+    mountain.draw(g2d);
+    player.draw(g2d);
 
   }
 
