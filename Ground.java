@@ -19,7 +19,7 @@ public class Ground {
   }
 
   public void draw(Graphics2D g2d) {
-    Line2D.Double ground = new Line2D.Double(0, 525, 800, 525);
+    Line2D.Double ground = new Line2D.Double(0, 550, 800, 525);
 
     for (Pebble pebble : pebbles) {
       System.out.println(pebble.getX() + " " + pebble.getY());
