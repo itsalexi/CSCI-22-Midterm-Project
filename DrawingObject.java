@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public abstract class DrawingObject {
-  protected double posX, posY;
+  private double posX, posY;
 
   public abstract void draw(Graphics2D g2d);
 

@@ -20,25 +20,14 @@ public class GameCanvas extends JPanel implements KeyListener {
     speed = 10;
     width = w;
     height = h;
-    player = new Player(100, h - 70, 32);
+    player = new Player(100, h - 70);
     isRunning = true;
     addKeyListener(this);
     mountain = new Mountain(5, 110);
     mountain2 = new BackMountain(3, 100);
     background = new Background(0, 0);
     setFocusable(true);
-    ground = new Ground(10);
-  }
-
-  public void updateGame() {
-    if (player.posY < height - 70) {
-      player.accelerate(0, -GRAVITY);
-    }
-    player.update();
-    if (player.posY > height - 70) {
-      player.setPosition(player.posX, height - 70);
-      player.setSpeedY(0);
-    }
+    ground = new Ground(10, 550);
   }
 
   @Override
@@ -57,10 +46,7 @@ public class GameCanvas extends JPanel implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-      if (player.speedY == 0) {
-        player.accelerate(0, 10);
-
-      }
+      player.jump();
     }
   }
 

@@ -1,30 +1,32 @@
-public class Player extends Square {
+import java.awt.*;
+import java.awt.geom.*;
 
-  protected double speedX = 0;
-  protected double speedY = 0;
+public class Player extends DrawingObject{
 
-  public Player(double x, double y, int s) {
-    super(x, y, s);
+  private double speedY = 0;
+  private Dino sprite;
+
+  public Player(double x, double y) {
+    super(x, y);
+    sprite = new Dino(x, y);
   }
 
-  public void move(double x, double y) {
-    posX -= x;
-    posY -= y;
+  @Override
+  public void draw(Graphics2D g2d){
+
+    sprite.draw(g2d);
+  }
+
+  public void jump(){
+
   }
 
   public void update() {
-    move(speedX, speedY);
-    speedX *= 0.99;
     speedY *= 0.99;
   }
 
   public void accelerate(double accelerationX, double accelerationY) {
-    speedX += accelerationX;
     speedY += accelerationY;
-  }
-
-  public void setSpeedX(double x) {
-    speedX = x;
   }
 
   public void setSpeedY(double y) {
