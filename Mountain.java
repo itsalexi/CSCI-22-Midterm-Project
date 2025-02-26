@@ -9,6 +9,7 @@ public class Mountain extends ParallaxObject {
 
   @Override
   public void drawElements(Graphics2D g2d, double x, double y) {
+
     Path2D.Double p = new Path2D.Double();
     Rectangle2D.Double base = new Rectangle2D.Double(0, 248.6 + y, 800, 69.4);
     Color color = new Color(160, 2, 51);

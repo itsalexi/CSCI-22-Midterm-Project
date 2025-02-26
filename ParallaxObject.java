@@ -1,7 +1,6 @@
 import java.awt.*;
 
-public abstract class 
-ParallaxObject {
+public abstract class ParallaxObject {
   private double speed;
   private GameConfig cfg;
   private double offsetX = 0;

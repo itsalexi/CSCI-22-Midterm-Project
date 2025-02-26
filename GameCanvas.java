@@ -34,7 +34,7 @@ public class GameCanvas extends JPanel implements KeyListener {
 
     mountain = new Mountain(5, 110, cfg);
     mountain2 = new BackMountain(3, 100, cfg);
-    background = new Background(0, 0, cfg);
+    background = new Background(3, 0, cfg);
 
     setFocusable(true);
     ground = new Ground(10, 550);
