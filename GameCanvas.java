@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class GameCanvas extends JPanel implements KeyListener {
   public static final double GRAVITY = 0.3;
+  public static final double accel = 0.01;
   private int width;
   private int height;
   private Player player;
@@ -54,6 +55,7 @@ public class GameCanvas extends JPanel implements KeyListener {
 
   public void updateGame(){
     score += (int) speed/10;
+    speed += accel;
   }
 
   public boolean isRunning() {

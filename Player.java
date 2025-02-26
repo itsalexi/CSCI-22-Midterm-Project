@@ -15,7 +15,6 @@ public class Player extends DrawingObject{
 
   @Override
   public void draw(Graphics2D g2d){
-
     sprite.draw(g2d);
   }
 
