@@ -10,6 +10,7 @@ public class GameCanvas extends JPanel implements KeyListener {
   private int speed;
   private Timer timer;
   private boolean isRunning;
+  private int score;
 
   private Ground ground;
   private Mountain mountain;
@@ -22,6 +23,7 @@ public class GameCanvas extends JPanel implements KeyListener {
     height = h;
     player = new Player(100, h - 70);
     isRunning = true;
+    score = 0;
     addKeyListener(this);
     mountain = new Mountain(5, 110);
     mountain2 = new BackMountain(3, 100);
@@ -48,6 +50,10 @@ public class GameCanvas extends JPanel implements KeyListener {
     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
       player.jump();
     }
+  }
+
+  public void updateGame(){
+    score += (int) speed/10;
   }
 
   public boolean isRunning() {

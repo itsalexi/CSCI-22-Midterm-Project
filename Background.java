@@ -5,12 +5,14 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.Timer;
 
 public class Background extends ParallaxObject implements ActionListener {
-  private double cycleProgress = 0;
-  private boolean isDayToNight = false;
+  private double cycleProgress;
+  private boolean isDayToNight;
   private Timer timer;
 
   public Background(int s, double y) {
     super(s, y);
+    cycleProgress = 0;
+    isDayToNight = false;
     timer = new Timer(50, this);
     timer.start();
   }
