@@ -13,10 +13,13 @@ public class GameCanvas extends JPanel implements KeyListener {
   private boolean isRunning;
   private int score;
 
+  private GameConfig cfg;
+
   private Ground ground;
   private Mountain mountain;
   private BackMountain mountain2;
   private Background background;
+  private JLabel scoreLabel;
 
   public GameCanvas(int w, int h) {
     speed = 10;
@@ -25,12 +28,18 @@ public class GameCanvas extends JPanel implements KeyListener {
     player = new Player(100, h - 70);
     isRunning = true;
     score = 0;
+    scoreLabel = new JLabel("tite");
     addKeyListener(this);
-    mountain = new Mountain(5, 110);
-    mountain2 = new BackMountain(3, 100);
-    background = new Background(0, 0);
+    cfg = new GameConfig();
+
+    mountain = new Mountain(5, 110, cfg);
+    mountain2 = new BackMountain(3, 100, cfg);
+    background = new Background(0, 0, cfg);
+
     setFocusable(true);
     ground = new Ground(10, 550);
+    add(scoreLabel);
+
   }
 
   @Override
@@ -39,7 +48,6 @@ public class GameCanvas extends JPanel implements KeyListener {
 
     background.draw(g2d);
     ground.draw(g2d);
-
     mountain2.draw(g2d);
     mountain.draw(g2d);
     player.draw(g2d);
@@ -53,9 +61,10 @@ public class GameCanvas extends JPanel implements KeyListener {
     }
   }
 
-  public void updateGame(){
-    score += (int) speed/10;
-    speed += accel;
+  public void updateGame() {
+    cfg.setAcceleration(cfg.getAcceleration() + 0.02);
+    cfg.setScore(cfg.getScore() + 1);
+    scoreLabel.setText(String.format("%d", cfg.getScore()));
   }
 
   public boolean isRunning() {

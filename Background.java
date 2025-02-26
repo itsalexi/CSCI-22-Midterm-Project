@@ -7,24 +7,27 @@ import javax.swing.Timer;
 public class Background extends ParallaxObject implements ActionListener {
   private double cycleProgress;
   private boolean isDayToNight;
+  private GameConfig cfg;
   private Timer timer;
 
-  public Background(int s, double y) {
-    super(s, y);
+  public Background(int s, double y, GameConfig c) {
+    super(s, y, c);
     cycleProgress = 0;
     isDayToNight = false;
-    timer = new Timer(50, this);
+    timer = new Timer(100, this);
     timer.start();
+    cfg = c;
   }
 
   @Override
   public void drawElements(Graphics2D g2d, double x, double y) {
-
+    int newDelay = Math.max(1, timer.getDelay() - ((int) cfg.getAcceleration() / 100));
+    timer.setDelay(newDelay);
     Color dayTop = new Color(135, 206, 250);
     Color dayBottom = new Color(255, 223, 186);
 
     Color nightTop = new Color(50, 0, 69);
-    Color nightBottom = new Color(124,11, 55);
+    Color nightBottom = new Color(124, 11, 55);
 
     int r1 = (int) ((1 - cycleProgress) * dayTop.getRed() + cycleProgress * nightTop.getRed());
     int g1 = (int) ((1 - cycleProgress) * dayTop.getGreen() + cycleProgress * nightTop.getGreen());

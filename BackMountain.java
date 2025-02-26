@@ -3,8 +3,8 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
 public class BackMountain extends ParallaxObject {
-  public BackMountain(int s, double y) {
-    super(s, y);
+  public BackMountain(int s, double y, GameConfig c) {
+    super(s, y, c);
   }
 
   @Override
