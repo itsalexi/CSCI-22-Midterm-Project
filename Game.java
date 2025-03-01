@@ -6,7 +6,7 @@ public class Game {
     int w = 800;
     int h = 600;
     JFrame f = new JFrame();
-    GameCanvas gc = new GameCanvas(w, h);
+    GameCanvas gc = new GameCanvas(h);
 
     f.add(gc);
     f.setSize(w, h);

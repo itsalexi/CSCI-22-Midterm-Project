@@ -11,7 +11,7 @@ public class Dino extends DrawingObject{
     }
 
     @Override
-    public void draw(Graphics2D g){
+    public void drawElements(Graphics2D g2d){
 
     }
 

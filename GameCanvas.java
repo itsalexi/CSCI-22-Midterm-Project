@@ -5,13 +5,8 @@ import javax.swing.*;
 public class GameCanvas extends JPanel implements KeyListener {
   public static final double GRAVITY = 0.3;
   public static final double accel = 0.01;
-  private int width;
-  private int height;
   private Player player;
-  private int speed;
-  private Timer timer;
   private boolean isRunning;
-  private int score;
 
   private GameConfig cfg;
 
@@ -21,14 +16,10 @@ public class GameCanvas extends JPanel implements KeyListener {
   private Background background;
   private JLabel scoreLabel;
 
-  public GameCanvas(int w, int h) {
-    speed = 10;
-    width = w;
-    height = h;
+  public GameCanvas(int h) {
     player = new Player(100, h - 70);
     isRunning = true;
-    score = 0;
-    scoreLabel = new JLabel("tite");
+    scoreLabel = new JLabel();
     addKeyListener(this);
     cfg = new GameConfig();
 

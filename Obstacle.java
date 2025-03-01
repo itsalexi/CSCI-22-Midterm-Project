@@ -5,8 +5,8 @@ public class Obstacle extends ParallaxObject {
     private double offsetX = 0;
     private double offsetY = 0;
 
-    public Obstacle(int s, double y, GameConfig c) {
-        super(s, y, c);
+    public Obstacle(int s, double y) {
+        super();
     }
 
     @Override
