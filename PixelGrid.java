@@ -21,4 +21,12 @@ public class PixelGrid extends DrawingObject{
             }
         }
     }
+
+    public double getWidth(){
+        return grid[0].length * pixelSize;
+    }
+
+    public double getHeight(){
+        return grid.length * pixelSize;
+    }
 }

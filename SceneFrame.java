@@ -16,10 +16,12 @@ class SceneFrame{
         ActionListener repaint = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                int deltaTime = (int) (System.currentTimeMillis() - lastUpdate);
-                sc.gameUpdate(deltaTime);
-                f.repaint();
-                lastUpdate = System.currentTimeMillis();
+                if(sc.isRunning()){
+                    int deltaTime = (int) (System.currentTimeMillis() - lastUpdate);
+                    sc.gameUpdate(deltaTime);
+                    f.repaint();
+                    lastUpdate = System.currentTimeMillis();
+                }
             }
         };
         repaintTimer = new Timer(1000/60, repaint);

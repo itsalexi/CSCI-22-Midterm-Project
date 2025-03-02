@@ -6,6 +6,7 @@ public class Player extends DrawingObject{
   private double speed;
   private Dino sprite;
   private int runningDuration;
+  private boolean isAlive;
 
   public Player(double x, double y) {
     super(x, y);
@@ -13,6 +14,7 @@ public class Player extends DrawingObject{
     sprite = new Dino(0, 0);
     speed = 0;
     runningDuration = 0;
+    isAlive = true;
   }
 
   @Override
@@ -28,16 +30,20 @@ public class Player extends DrawingObject{
   }
 
   public void update(int t) {
-    this.accelerate(-1000, t);
-    this.setPosition(this.getX(), this.getY() - speed * t / 1000);
-    runningDuration += t;
-    sprite.setSprite(1 + (runningDuration / 100) % 2);
-    if(this.getY() > baseY){
-      this.setPosition(this.getX(), baseY);
-      speed = 0;
-    } else {
-      runningDuration = 0;
-      sprite.setSprite(0);
+    if(!isAlive){
+      sprite.setSprite(3);
+    } else{ 
+      this.accelerate(-1000, t);
+      this.setPosition(this.getX(), this.getY() - speed * t / 1000);
+      runningDuration += t;
+      sprite.setSprite(1 + (runningDuration / 100) % 2);
+      if(this.getY() > baseY){
+        this.setPosition(this.getX(), baseY);
+        speed = 0;
+      } else {
+        runningDuration = 0;
+        sprite.setSprite(0);
+      }
     }
   }
 
@@ -47,6 +53,10 @@ public class Player extends DrawingObject{
 
   public Rectangle2D getHitBox(){
     return new Rectangle2D.Double(this.getX(), this.getY(), Dino.getWidth(), Dino.getHeight());
+  }
+
+  public void die(){
+    isAlive = false;
   }
 
 }
