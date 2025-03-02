@@ -61,6 +61,14 @@ public class SceneCanvas extends JComponent{
         player.jump();
     }
 
+    public void duck(){
+        player.duck();
+    }
+
+    public void unDuck(){
+        player.unDuck();
+    }
+
     public boolean isRunning(){
         return running;
     }

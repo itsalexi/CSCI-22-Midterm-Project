@@ -10,7 +10,7 @@ public class BackMountain extends ParallaxObject {
   public void drawElements(Graphics2D g2d) {
     Path2D.Double p = new Path2D.Double();
     Rectangle2D.Double base = new Rectangle2D.Double(0, 200.6, 800, 69.4);
-    Color color = new Color(209, 44, 58);
+    Color color = new Color(128, 128, 128);
     g2d.setColor(color);
     p.moveTo(0, 205.3);
     p.lineTo(0, 85.1);

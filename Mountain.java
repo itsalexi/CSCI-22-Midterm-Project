@@ -12,7 +12,7 @@ public class Mountain extends ParallaxObject {
 
     Path2D.Double p = new Path2D.Double();
     Rectangle2D.Double base = new Rectangle2D.Double(0, 248.6, 800, 69.4);
-    Color color = new Color(160, 2, 51);
+    Color color = new Color(82, 82, 82);
     g2d.setColor(color);
 
     p.moveTo(0, 318);
