@@ -2,22 +2,20 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Square extends DrawingObject {
-  private int size;
+  private double size;
+  private Color color;
 
-  public Square(double x, double y, int s) {
+  public Square(double x, double y, double s, Color c) {
     super(x, y);
     size = s;
+    color = c;
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
-    Rectangle2D.Double square = new Rectangle2D.Double(posX, posY, size, size);
-    g2d.setColor(Color.BLACK);
+  public void drawElements(Graphics2D g2d) {
+    Rectangle2D.Double square = new Rectangle2D.Double(0, 0, size, size);
+    g2d.setColor(color);
     g2d.fill(square);
-  }
-
-  public double getSize() {
-    return size;
   }
 
 }

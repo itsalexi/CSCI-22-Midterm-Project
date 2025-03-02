@@ -1,37 +1,21 @@
-
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.util.ArrayList;
+import java.awt.geom.*;
 
-public class Ground {
-  private double speed;
+public class Ground extends DrawingObject{
 
-  private static ArrayList<Pebble> pebbles = new ArrayList<>();
 
-  public Ground(int s) {
-    speed = s;
-    for (int i = 0; i < 25; i++) {
-      int pebbleX = (int) (Math.random() * 800);
-      int pebbleY = 550 + (int) (Math.random() * 10);
-      int size = (int) (Math.random() * 20);
-      Ground.pebbles.add(new Pebble(pebbleX, pebbleY, size));
-    }
+  public Ground(int s, double y) {
+    super(s, y);
   }
 
-  public void draw(Graphics2D g2d) {
-    Line2D.Double ground = new Line2D.Double(0, 550, 800, 550);
-
-    for (Pebble pebble : pebbles) {
-      System.out.println(pebble.getX() + " " + pebble.getY());
-      pebble.setPosition(pebble.getX() - (int) speed, pebble.getY());
-      g2d.fillOval(pebble.getX(), pebble.getY(), pebble.getSize(), 3);
-
-      if (pebble.getX() <= 0) {
-        pebble.setPosition(800, pebble.getY());
-      }
-    }
-
+  public void drawElements(Graphics2D g2d){
+    Rectangle2D.Double ground = new Rectangle2D.Double();
     g2d.draw(ground);
+  }
+
+  @Override
+  public void draw(Graphics2D g){
+    
   }
 
 }

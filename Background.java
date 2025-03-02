@@ -1,28 +1,28 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Rectangle2D;
-import javax.swing.Timer;
+import java.awt.event.*;
+import java.awt.geom.*;
 
 public class Background extends ParallaxObject implements ActionListener {
-  private double cycleProgress = 0;
-  private boolean isDayToNight = false;
-  private Timer timer;
+  private double cycleProgress;
+  private boolean isDayToNight;
+  private int[][] starPositions = {
+      { 50, 50 }, { 100, 80 }, { 200, 30 }, { 300, 60 },
+      { 400, 90 }, { 500, 40 }, { 600, 70 }, { 700, 20 }
+  };
 
   public Background(int s, double y) {
-    super(s, y);
-    timer = new Timer(50, this);
-    timer.start();
+    super(0, y, s);
+    cycleProgress = 0;
+    isDayToNight = false;
   }
 
   @Override
-  public void drawElements(Graphics2D g2d, double x, double y) {
-
+  public void drawElements(Graphics2D g2d) {
     Color dayTop = new Color(135, 206, 250);
     Color dayBottom = new Color(255, 223, 186);
 
     Color nightTop = new Color(50, 0, 69);
-    Color nightBottom = new Color(124,11, 55);
+    Color nightBottom = new Color(124, 11, 55);
 
     int r1 = (int) ((1 - cycleProgress) * dayTop.getRed() + cycleProgress * nightTop.getRed());
     int g1 = (int) ((1 - cycleProgress) * dayTop.getGreen() + cycleProgress * nightTop.getGreen());
@@ -38,6 +38,38 @@ public class Background extends ParallaxObject implements ActionListener {
     GradientPaint gradient = new GradientPaint(0, 0, topColor, 0, 428, bottomColor);
     g2d.setPaint(gradient);
     g2d.fill(new Rectangle2D.Double(0, 0, 800, 428));
+    drawClouds(g2d, (int) this.getX(), (int) this.getY());
+
+    if (cycleProgress > 0.5) {
+      drawStars(g2d, (int) this.getX(), (int) this.getY());
+    }
+
+  }
+
+  private void drawStars(Graphics2D g2d, int x, int y) {
+    g2d.setColor(Color.white);
+    for (int[] pos : starPositions) {
+      int starX = pos[0];
+      int starY = pos[1];
+      g2d.fillOval(starX + x, starY + y, 3, 3);
+    }
+  }
+
+  private void drawClouds(Graphics2D g2d, int x, int y) {
+    g2d.setColor(new Color(255, 255, 255, 100));
+    g2d.fillOval(100 + x, 60 + y, 80, 40);
+    g2d.fillOval(150 + x, 50 + y, 100, 50);
+    g2d.fillOval(220 + x, 60 + y, 80, 40);
+    g2d.fillOval(200 + x, 80 + y, 80, 40);
+    g2d.fillOval(350 + x, 60 + y, 100, 50);
+    g2d.fillOval(320 + x, 70 + y, 80, 40);
+
+    g2d.fillOval(450 + x, 40 + y, 90, 50);
+    g2d.fillOval(550 + x, 80 + y, 110, 60);
+    g2d.fillOval(650 + x, 50 + y, 100, 50);
+    g2d.fillOval(50 + x, 100 + y, 120, 60);
+    g2d.fillOval(700 + x, 90 + y, 80, 40);
+
   }
 
   @Override
@@ -55,6 +87,5 @@ public class Background extends ParallaxObject implements ActionListener {
         isDayToNight = true;
       }
     }
-
   }
 }

@@ -1,14 +1,22 @@
 import java.awt.*;
+import java.awt.geom.*;
 
 public abstract class DrawingObject {
-  protected double posX, posY;
+  private double posX, posY;
 
-  public abstract void draw(Graphics2D g2d);
-
-  public DrawingObject(double x, double y) {
+  public DrawingObject(double x, double y){
     posX = x;
     posY = y;
   }
+
+  public void draw(Graphics2D g2d){
+    AffineTransform reset = g2d.getTransform();
+    g2d.translate(posX, posY);
+    drawElements(g2d);
+    g2d.setTransform(reset);
+  }
+
+  public abstract void drawElements(Graphics2D g2d);
 
   public double getX() {
     return posX;
@@ -22,5 +30,7 @@ public abstract class DrawingObject {
     posX = x;
     posY = y;
   }
+
+  public void update(int t){}
 
 }
