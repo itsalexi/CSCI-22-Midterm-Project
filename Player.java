@@ -5,12 +5,14 @@ public class Player extends DrawingObject{
   private double baseY;
   private double speed;
   private Dino sprite;
+  private int runningDuration;
 
   public Player(double x, double y) {
     super(x, y);
     baseY = y;
     sprite = new Dino(0, 0);
     speed = 0;
+    runningDuration = 0;
   }
 
   @Override
@@ -21,15 +23,21 @@ public class Player extends DrawingObject{
   public void jump(){
     if(speed == 0 && this.getY() == baseY){
       speed = 500;
+      sprite.setSprite(0);
     }
   }
 
   public void update(int t) {
     this.accelerate(-1000, t);
     this.setPosition(this.getX(), this.getY() - speed * t / 1000);
+    runningDuration += t;
+    sprite.setSprite(1 + (runningDuration / 100) % 2);
     if(this.getY() > baseY){
       this.setPosition(this.getX(), baseY);
       speed = 0;
+    } else {
+      runningDuration = 0;
+      sprite.setSprite(0);
     }
   }
 
