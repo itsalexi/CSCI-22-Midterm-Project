@@ -1,14 +1,10 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Rectangle2D;
-import javax.swing.Timer;
+import java.awt.event.*;
+import java.awt.geom.*;
 
-public class Background extends DrawingObject implements ActionListener {
+public class Background extends ParallaxObject implements ActionListener {
   private double cycleProgress;
   private boolean isDayToNight;
-  private Timer timer;
-
   private int[][] starPositions = {
       { 50, 50 }, { 100, 80 }, { 200, 30 }, { 300, 60 },
       { 400, 90 }, { 500, 40 }, { 600, 70 }, { 700, 20 }
@@ -18,14 +14,10 @@ public class Background extends DrawingObject implements ActionListener {
     super(0, y, s);
     cycleProgress = 0;
     isDayToNight = false;
-    timer = new Timer(100, this);
-    timer.start();
   }
 
   @Override
   public void drawElements(Graphics2D g2d) {
-    int newDelay = Math.max(1, timer.getDelay() - ((int) cfg.getAcceleration() / 100));
-    timer.setDelay(newDelay);
     Color dayTop = new Color(135, 206, 250);
     Color dayBottom = new Color(255, 223, 186);
 
@@ -46,10 +38,10 @@ public class Background extends DrawingObject implements ActionListener {
     GradientPaint gradient = new GradientPaint(0, 0, topColor, 0, 428, bottomColor);
     g2d.setPaint(gradient);
     g2d.fill(new Rectangle2D.Double(0, 0, 800, 428));
-    drawClouds(g2d, (int) x, (int) y);
+    drawClouds(g2d, (int) this.getX(), (int) this.getY());
 
     if (cycleProgress > 0.5) {
-      drawStars(g2d, (int) x, (int) y);
+      drawStars(g2d, (int) this.getX(), (int) this.getY());
     }
 
   }

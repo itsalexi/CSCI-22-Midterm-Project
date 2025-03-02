@@ -15,7 +15,7 @@ public class Triangle extends DrawingObject {
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
+  public void drawElements(Graphics2D g2d) {
     Path2D.Double triangle = new Path2D.Double();
     triangle.moveTo(x[0], y[0]);
     for(int i = 1; i < 6; i++){

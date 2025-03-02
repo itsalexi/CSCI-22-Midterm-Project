@@ -15,7 +15,7 @@ public class Hexagon extends DrawingObject {
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
+  public void drawElements(Graphics2D g2d) {
     Path2D.Double hexagon = new Path2D.Double();
     hexagon.moveTo(x[0], y[0]);
     for(int i = 1; i < 6; i++){

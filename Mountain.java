@@ -2,13 +2,13 @@ import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
-public class Mountain extends DrawingObject {
+public class Mountain extends ParallaxObject {
   public Mountain(double s, double y) {
     super(0, y, s);
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
+  public void drawElements(Graphics2D g2d) {
 
     Path2D.Double p = new Path2D.Double();
     Rectangle2D.Double base = new Rectangle2D.Double(0, 248.6, 800, 69.4);

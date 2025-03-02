@@ -1,16 +1,14 @@
 import java.awt.*;
 
-public class Obstacle extends ParallaxObject {
+public class Obstacle extends DrawingObject {
     private double speed;
-    private double offsetX = 0;
-    private double offsetY = 0;
 
     public Obstacle(int s, double y) {
-        super();
+        super(s, y);
     }
 
     @Override
-    public void drawElements(Graphics2D g2d, double x, double y) {
+    public void drawElements(Graphics2D g2d) {
 
     };
 }

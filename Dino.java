@@ -12,7 +12,8 @@ public class Dino extends DrawingObject{
 
     @Override
     public void drawElements(Graphics2D g2d){
-
+        Hexagon h = new Hexagon(0, 0, 20, 20, Color.BLACK);
+        h.draw(g2d);
     }
 
     public double getWidth(){

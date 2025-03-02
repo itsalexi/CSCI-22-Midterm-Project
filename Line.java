@@ -9,15 +9,15 @@ public class Line extends DrawingObject {
 
   public Line(double x, double y, double x2, double y2, double w, Color c) {
     super(x, y);
-    endX = x2;
-    endY = y2;
+    endX = x2 - x;
+    endY = y2 - y;
     width = w;
     color = c;
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
-    Line2D.Double line = new Line2D.Double(this.getX(), this.getY(), endX, endY);
+  public void drawElements(Graphics2D g2d) {
+    Line2D.Double line = new Line2D.Double(0, 0, endX, endY);
     g2d.setStroke(new BasicStroke( (float) width));
     g2d.setColor(color);
     g2d.draw(line);

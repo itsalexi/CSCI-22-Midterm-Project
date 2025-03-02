@@ -12,8 +12,8 @@ public class Circle extends DrawingObject {
   }
 
   @Override
-  public void draw(Graphics2D g2d) {
-    Ellipse2D.Double circle = new Ellipse2D.Double(this.getX(), this.getY(), size, size);
+  public void drawElements(Graphics2D g2d) {
+    Ellipse2D.Double circle = new Ellipse2D.Double(0, 0, size, size);
     g2d.setColor(color);
     g2d.fill(circle);
   }

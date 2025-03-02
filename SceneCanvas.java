@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 public class SceneCanvas extends JComponent{
@@ -7,29 +8,37 @@ public class SceneCanvas extends JComponent{
     private ArrayList<DrawingObject> objects;
     private double score, baseSpeed;
     private JLabel scoreLabel, gameOverLabel;
+    private Player player;
     
     public SceneCanvas(){
         this.setPreferredSize(new Dimension(800, 600));
+        player = new Player(100, 300);
 
         score = 1;
-        baseSpeed = 0.01;
+        baseSpeed = 10;
 
         objects = new ArrayList<>();
 
         // add objects by increasing z-order here
-        objects.add(new Mountain(100, 0.1));
-
+        objects.add(new Mountain(baseSpeed * 2, 100));
+        objects.add(player);
     }
 
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         for(DrawingObject o : objects){
-            o.drawElements(g2d);
+            o.draw(g2d);
         }
     }
 
     public void gameUpdate(int t){
-        
+        for(DrawingObject o : objects){
+            o.update(t);
+        }
+    }
+
+    public void jump(){
+        player.jump();
     }
 }

@@ -8,7 +8,7 @@ public class Ground extends DrawingObject{
     super(s, y);
   }
 
-  public void drawElements(Graphics2D g2d, double x, double y){
+  public void drawElements(Graphics2D g2d){
     Rectangle2D.Double ground = new Rectangle2D.Double();
     g2d.draw(ground);
   }

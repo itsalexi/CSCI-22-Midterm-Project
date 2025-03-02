@@ -27,21 +27,14 @@ class SceneFrame{
 
         KeyListener jumpListener = new KeyListener(){
             public void keyPressed(KeyEvent e){
-
+                if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                    sc.jump();
+                }
             }
             public void keyTyped(KeyEvent e){}
             public void keyReleased(KeyEvent e){}
         };
         f.addKeyListener(jumpListener);
-
-        // ActionListener testListener = new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e){
-
-        //     }
-        // };
-        // Timer testTimer = new Timer(1000/60, testListener);
-        // testTimer.start();
     }
 
     public void setUpGUI(){
