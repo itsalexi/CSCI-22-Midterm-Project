@@ -1,3 +1,4 @@
+import java.awt.RenderingHints.Key;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.File;
@@ -37,10 +38,18 @@ class SceneFrame{
             public void keyPressed(KeyEvent e){
                 if(e.getKeyCode() == KeyEvent.VK_SPACE){
                     sc.jump();
+                } else if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_KP_DOWN){
+                    sc.duck();
                 }
             }
-            public void keyTyped(KeyEvent e){}
-            public void keyReleased(KeyEvent e){}
+            public void keyTyped(KeyEvent e){
+                
+            }
+            public void keyReleased(KeyEvent e){
+                if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_KP_DOWN){
+                    sc.unDuck();
+                }
+            }
         };
         f.addKeyListener(jumpListener);
     }
