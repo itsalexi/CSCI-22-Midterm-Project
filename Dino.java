@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Dino extends DrawingObject{
     
-    private static double width = 50; // temp value
-    private static double height = 100; // temp value
+    private double width;
+    private double height;
     private int spriteIndex;
-    private ArrayList<int[][]> sprites;
+    private ArrayList<PixelGrid> sprites;
     private boolean isAlive;
 
     public Dino(double x, double y){
@@ -107,25 +107,24 @@ public class Dino extends DrawingObject{
             {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
 
-        sprites.add(standing);
-        sprites.add(running1);
-        sprites.add(running2);
-        sprites.add(dead);
+        sprites.add(new PixelGrid(0, 0, standing, 3, new Color[] {Color.BLACK}));
+        sprites.add(new PixelGrid(0, 0, running1, 3, new Color[] {Color.BLACK}));
+        sprites.add(new PixelGrid(0, 0, running2, 3, new Color[] {Color.BLACK}));
+        sprites.add(new PixelGrid(0, 0, dead, 3, new Color[] {Color.BLACK}));
 
     }
 
     @Override
     public void drawElements(Graphics2D g2d){
-        PixelGrid sprite = new PixelGrid(0, 0, sprites.get(spriteIndex), 3, new Color[] {Color.BLACK});
-        sprite.draw(g2d);
+        sprites.get(spriteIndex).draw(g2d);
     }
 
-    public static double getWidth(){
-        return width;
+    public double getWidth(){
+        return sprites.get(spriteIndex).getWidth();
     }
     
-    public static double getHeight(){
-        return height;
+    public double getHeight(){
+        return sprites.get(spriteIndex).getHeight();
     }
 
     public void setSprite(int i){

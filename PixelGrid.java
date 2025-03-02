@@ -14,7 +14,7 @@ public class PixelGrid extends DrawingObject{
 
     public void drawElements(Graphics2D g2d){
         for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
+            for(int j = 0; j < grid[i].length; j++){
                 if(grid[i][j] != 0){
                     new Square(j * pixelSize, i * pixelSize, pixelSize, colors[grid[i][j] - 1]).draw(g2d);
                 }
