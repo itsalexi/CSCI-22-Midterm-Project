@@ -1,5 +1,7 @@
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
+import javax.sound.sampled.*;
 
 class SceneFrame{
 
@@ -7,10 +9,12 @@ class SceneFrame{
     private SceneCanvas sc;
     private Timer repaintTimer;
     private long lastUpdate;
+    private boolean isRunning;
 
     public SceneFrame(){
         sc = new SceneCanvas();
         f = new JFrame();
+        isRunning = true;
 
         lastUpdate = System.currentTimeMillis();
         ActionListener repaint = new ActionListener() {
@@ -21,6 +25,8 @@ class SceneFrame{
                     sc.gameUpdate(deltaTime);
                     f.repaint();
                     lastUpdate = System.currentTimeMillis();
+                } else {
+                    isRunning = false;
                 }
             }
         };
@@ -45,5 +51,28 @@ class SceneFrame{
         f.pack();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
+    }
+
+    public void playSound(String s){
+        String fileName;
+        if(s.equalsIgnoreCase("jump")){
+            fileName = "sfx/jump.wav";
+        }else if(s.equalsIgnoreCase("die")){
+            fileName = "sfx/die.wav";
+        }else if(s.equalsIgnoreCase("point")){
+            fileName = "sfx/point.wav";
+        } else {
+            System.out.printf("Not a valid sound name: %s\n", s);
+            return;
+        }
+
+        try{
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName).getAbsoluteFile());
+            clip.open(inputStream);
+            clip.start();
+        } catch (Exception e){
+            System.out.printf("Error playing sound %s", s);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class SceneCanvas extends JComponent{
     private JLabel scoreLabel, gameOverLabel;
     private Player player;
     private boolean running;
+    private int test;
     
     public SceneCanvas(){
         this.setPreferredSize(new Dimension(800, 600));
@@ -18,6 +19,7 @@ public class SceneCanvas extends JComponent{
         score = 1;
         baseSpeed = 10;
         running = true;
+        test = 0;
 
         objects = new ArrayList<>();
 
@@ -34,13 +36,17 @@ public class SceneCanvas extends JComponent{
     }
 
     public void gameUpdate(int t){
+        test += t;
         for(DrawingObject o : objects){
             o.update(t);
             if(o instanceof Obstacle){
-
+                // collision check
             }
         }
-
+        if(test / 1000 > 10){
+            player.die();
+            running = false;
+        }
     }
 
     public void jump(){

@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.io.File;
+import javax.sound.sampled.*;
 
 public class Player extends DrawingObject{
   private double baseY;
@@ -26,6 +28,14 @@ public class Player extends DrawingObject{
     if(speed == 0 && this.getY() == baseY){
       speed = 500;
       sprite.setSprite(0);
+      try{
+          Clip clip = AudioSystem.getClip();
+          AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/jump.wav").getAbsoluteFile());
+          clip.open(inputStream);
+          clip.start();
+      } catch (Exception e){
+          System.out.println("Error playing sound");
+      }
     }
   }
 
@@ -57,6 +67,14 @@ public class Player extends DrawingObject{
 
   public void die(){
     isAlive = false;
+    try{
+      Clip clip = AudioSystem.getClip();
+      AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/die.wav").getAbsoluteFile());
+      clip.open(inputStream);
+      clip.start();
+    } catch (Exception e){
+        System.out.println("Error playing sound");
+    }
   }
 
 }
