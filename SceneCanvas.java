@@ -20,7 +20,6 @@ public class SceneCanvas extends JComponent{
         objects = new ArrayList<>();
 
         // add objects by increasing z-order here
-        objects.add(new Mountain(baseSpeed * 2, 100));
         objects.add(player);
     }
 

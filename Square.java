@@ -2,10 +2,10 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Square extends DrawingObject {
-  private int size;
+  private double size;
   private Color color;
 
-  public Square(double x, double y, int s, Color c) {
+  public Square(double x, double y, double s, Color c) {
     super(x, y);
     size = s;
     color = c;

@@ -19,7 +19,7 @@ public class Player extends DrawingObject{
   }
 
   public void jump(){
-    if(speed == 0){
+    if(speed == 0 && this.getY() == baseY){
       speed = 500;
     }
   }
@@ -35,6 +35,10 @@ public class Player extends DrawingObject{
 
   public void accelerate(double a, int t) {
     speed += a * t / 1000;
+  }
+
+  public Rectangle2D getHitBox(){
+    return new Rectangle2D.Double(this.getX(), this.getY(), Dino.getWidth(), Dino.getHeight());
   }
 
 }
