@@ -93,8 +93,10 @@ public class Player extends DrawingObject{
 
   public void unDuck(){
     isDucking = false;
-    baseY -= sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
-    this.setPosition(this.getX(), baseY);
+    if(this.getY() == baseY){
+      baseY -= sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
+      this.setPosition(this.getX(), baseY);
+    }
   }
 
 }
