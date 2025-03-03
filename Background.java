@@ -38,7 +38,6 @@ public class Background extends ParallaxObject implements ActionListener {
     GradientPaint gradient = new GradientPaint(0, 0, topColor, 0, 428, bottomColor);
     g2d.setPaint(gradient);
     g2d.fill(new Rectangle2D.Double(0, 0, 800, 428));
-    drawClouds(g2d, (int) this.getX(), (int) this.getY());
 
     if (cycleProgress > 0.5) {
       drawStars(g2d, (int) this.getX(), (int) this.getY());
@@ -55,22 +54,6 @@ public class Background extends ParallaxObject implements ActionListener {
     }
   }
 
-  private void drawClouds(Graphics2D g2d, int x, int y) {
-    g2d.setColor(new Color(255, 255, 255, 100));
-    g2d.fillOval(100 + x, 60 + y, 80, 40);
-    g2d.fillOval(150 + x, 50 + y, 100, 50);
-    g2d.fillOval(220 + x, 60 + y, 80, 40);
-    g2d.fillOval(200 + x, 80 + y, 80, 40);
-    g2d.fillOval(350 + x, 60 + y, 100, 50);
-    g2d.fillOval(320 + x, 70 + y, 80, 40);
-
-    g2d.fillOval(450 + x, 40 + y, 90, 50);
-    g2d.fillOval(550 + x, 80 + y, 110, 60);
-    g2d.fillOval(650 + x, 50 + y, 100, 50);
-    g2d.fillOval(50 + x, 100 + y, 120, 60);
-    g2d.fillOval(700 + x, 90 + y, 80, 40);
-
-  }
 
   @Override
   public void actionPerformed(ActionEvent e) {

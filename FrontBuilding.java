@@ -50,7 +50,7 @@ public class FrontBuilding extends ParallaxObject {
     g2d.fill(new Rectangle2D.Double(795, 402.3, 5.1, 84.7));
 
     g2d.setColor(new Color(164, 177, 224));
-    g2d.fill(new Rectangle2D.Double(0, 490.5, 800, 54.7));
+    g2d.fill(new Rectangle2D.Double(0, 482.8, 800, 60));
 
     g2d.setColor(new Color(120, 152, 200));
     g2d.fill(new Rectangle2D.Double(0, 490.5, 53.3, 49.5));
