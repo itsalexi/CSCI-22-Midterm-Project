@@ -41,9 +41,7 @@ public class Player extends DrawingObject {
   }
 
   public void update(int t) {
-    if (!isAlive) {
-      sprite.setSprite(3);
-    } else {
+    if (isAlive) {
       this.accelerate(-4000, t);
       this.setPosition(this.getX(), this.getY() - speed * t / 1000);
       runningDuration += t;
@@ -72,6 +70,7 @@ public class Player extends DrawingObject {
 
   public void die() {
     isAlive = false;
+    sprite.setSprite(3);
     try {
       Clip clip = AudioSystem.getClip();
       AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/die.wav").getAbsoluteFile());
@@ -95,5 +94,4 @@ public class Player extends DrawingObject {
   public void unDuck() {
     isDucking = false;
   }
-
 }

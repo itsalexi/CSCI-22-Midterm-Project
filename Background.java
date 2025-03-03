@@ -12,7 +12,7 @@ public class Background extends ParallaxObject implements ActionListener {
 
   public Background(int s, double y) {
     super(0, y, s);
-    cycleProgress = 0;
+    cycleProgress = 1;
     isDayToNight = false;
   }
 
@@ -35,9 +35,9 @@ public class Background extends ParallaxObject implements ActionListener {
     Color topColor = new Color(r1, g1, b1);
     Color bottomColor = new Color(r2, g2, b2);
 
-    GradientPaint gradient = new GradientPaint(0, 0, topColor, 0, 428, bottomColor);
+    GradientPaint gradient = new GradientPaint(0, 0, topColor, 0, 600, bottomColor);
     g2d.setPaint(gradient);
-    g2d.fill(new Rectangle2D.Double(0, 0, 800, 428));
+    g2d.fill(new Rectangle2D.Double(0, 0, 800, 600));
 
     if (cycleProgress > 0.5) {
       drawStars(g2d, (int) this.getX(), (int) this.getY());

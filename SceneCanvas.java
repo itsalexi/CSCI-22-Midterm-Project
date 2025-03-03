@@ -11,10 +11,15 @@ public class SceneCanvas extends JComponent {
     private boolean running;
     private int lastObstacle;
     private ArrayList<Obstacle> obstacles;
+    private ObstacleGenerator obstacleGenerator;
+    private double time;
 
     public SceneCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
+        time = 0;
         player = new Player(50, 570);
+        obstacleGenerator = new ObstacleGenerator(570, 200);
+        Obstacle.setUpSprites();
 
         score = 1;
         baseSpeed = 10;
@@ -30,7 +35,8 @@ public class SceneCanvas extends JComponent {
         objects.add(new BackBuilding(300, 0));
         objects.add(new FrontBuilding(200, 0));
         objects.add(new Ground(50, 0));
-
+        
+        objects.add(obstacleGenerator);
         objects.add(player);
 
     }
@@ -41,9 +47,7 @@ public class SceneCanvas extends JComponent {
         for (DrawingObject o : objects) {
             o.draw(g2d);
         }
-        for (DrawingObject o : obstacles) {
-            o.draw(g2d);
-        }
+        obstacleGenerator.draw(g2d);
     }
 
     public void gameUpdate(int t) {
@@ -51,15 +55,16 @@ public class SceneCanvas extends JComponent {
         for (DrawingObject o : objects) {
             o.update(t);
         }
-        for (Obstacle o : obstacles) {
-            o.update(t);
+        obstacleGenerator.update(t);
+        for (Obstacle o : obstacleGenerator.getObstacles()) {
             if (o.getHitBox().intersects(player.getHitBox())) {
                 running = false;
                 player.die();
             }
         }
-        if (lastObstacle > 1000) {
-            // random obstacle logic
+        if (lastObstacle > 3000) {
+            obstacleGenerator.generate();
+            lastObstacle = 0;
         }
     }
 
@@ -77,5 +82,9 @@ public class SceneCanvas extends JComponent {
 
     public boolean isRunning() {
         return running;
+    }
+
+    public double getScore(){
+        return score;
     }
 }
