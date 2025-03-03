@@ -3,7 +3,7 @@ import java.awt.geom.*;
 import java.io.File;
 import javax.sound.sampled.*;
 
-public class Player extends DrawingObject{
+public class Player extends DrawingObject {
   private double baseY;
   private double speed;
   private Dino sprite;
@@ -21,38 +21,39 @@ public class Player extends DrawingObject{
   }
 
   @Override
-  public void drawElements(Graphics2D g2d){
+  public void drawElements(Graphics2D g2d) {
     sprite.draw(g2d);
   }
 
-  public void jump(){
-    if(speed == 0 && this.getY() == baseY && !isDucking){
+  public void jump() {
+    if (speed == 0 && this.getY() == baseY && !isDucking) {
       speed = 500;
       sprite.setSprite(0);
-      try{
-          Clip clip = AudioSystem.getClip();
-          AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/jump.wav").getAbsoluteFile());
-          clip.open(inputStream);
-          clip.start();
-      } catch (Exception e){
-          System.out.println("Error playing sound");
+      try {
+        Clip clip = AudioSystem.getClip();
+        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/jump.wav").getAbsoluteFile());
+        clip.open(inputStream);
+        clip.start();
+      } catch (Exception e) {
+        System.out.println("Error playing sound");
       }
     }
   }
 
   public void update(int t) {
-    if(!isAlive){
+    System.out.println(sprite.getSprite());
+    if (!isAlive) {
       sprite.setSprite(3);
-    } else { 
+    } else {
       this.accelerate(-1000, t);
       this.setPosition(this.getX(), this.getY() - speed * t / 1000);
       runningDuration += t;
-      if(isDucking) {
+      if (isDucking) {
         sprite.setSprite(4 + (runningDuration / 100) % 2);
       } else {
         sprite.setSprite(1 + (runningDuration / 100) % 2);
       }
-      if(this.getY() > baseY){
+      if (this.getY() > baseY) {
         this.setPosition(this.getX(), baseY);
         speed = 0;
       } else {
@@ -66,24 +67,24 @@ public class Player extends DrawingObject{
     speed += a * t / 1000;
   }
 
-  public Rectangle2D getHitBox(){
+  public Rectangle2D getHitBox() {
     return new Rectangle2D.Double(this.getX(), this.getY(), sprite.getWidth(), sprite.getHeight());
   }
 
-  public void die(){
+  public void die() {
     isAlive = false;
-    try{
+    try {
       Clip clip = AudioSystem.getClip();
       AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("sfx/die.wav").getAbsoluteFile());
       clip.open(inputStream);
       clip.start();
-    } catch (Exception e){
-        System.out.println("Error playing sound");
+    } catch (Exception e) {
+      System.out.println("Error playing sound");
     }
   }
 
-  public void duck(){
-    if(this.getY() == baseY && !isDucking){
+  public void duck() {
+    if (this.getY() == baseY && !isDucking) {
       sprite.setSprite(4);
       isDucking = true;
       baseY += sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
@@ -91,9 +92,9 @@ public class Player extends DrawingObject{
     }
   }
 
-  public void unDuck(){
+  public void unDuck() {
     isDucking = false;
-    if(this.getY() == baseY){
+    if (this.getY() == baseY) {
       baseY -= sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
       this.setPosition(this.getX(), baseY);
     }

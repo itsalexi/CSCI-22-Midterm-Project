@@ -1,32 +1,29 @@
 import java.awt.*;
 
-public class PixelGrid extends DrawingObject{
+public class PixelGrid extends DrawingObject {
 
-    private int[][] grid;
+    private Color[][] grid;
     private double pixelSize;
-    private Color[] colors;
-    public PixelGrid(double x, double y, int[][] g, double p, Color[] c){
+
+    public PixelGrid(double x, double y, Color[][] g, double p) {
         super(x, y);
         grid = g;
         pixelSize = p;
-        colors = c;
     }
 
-    public void drawElements(Graphics2D g2d){
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[i].length; j++){
-                if(grid[i][j] != 0){
-                    new Square(j * pixelSize, i * pixelSize, pixelSize, colors[grid[i][j] - 1]).draw(g2d);
-                }
+    public void drawElements(Graphics2D g2d) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                new Square(j * pixelSize, i * pixelSize, pixelSize, grid[i][j]).draw(g2d);
             }
         }
     }
 
-    public double getWidth(){
+    public double getWidth() {
         return grid[0].length * pixelSize;
     }
 
-    public double getHeight(){
+    public double getHeight() {
         return grid.length * pixelSize;
     }
 }
