@@ -32,7 +32,6 @@ public class SceneCanvas extends JComponent {
 
         objects.add(player);
 
-        System.out.println(objects.get(1).getY());
     }
 
     @Override

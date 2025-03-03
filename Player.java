@@ -41,7 +41,6 @@ public class Player extends DrawingObject {
   }
 
   public void update(int t) {
-    System.out.println(sprite.getSprite());
     if (!isAlive) {
       sprite.setSprite(3);
     } else {
@@ -87,17 +86,11 @@ public class Player extends DrawingObject {
     if (this.getY() == baseY && !isDucking) {
       sprite.setSprite(4);
       isDucking = true;
-      baseY += sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
-      this.setPosition(this.getX(), baseY);
     }
   }
 
   public void unDuck() {
     isDucking = false;
-    if (this.getY() == baseY) {
-      baseY -= sprite.getSprite(0).getHeight() - sprite.getSprite(4).getHeight();
-      this.setPosition(this.getX(), baseY);
-    }
   }
 
 }
