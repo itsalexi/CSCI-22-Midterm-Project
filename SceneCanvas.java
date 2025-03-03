@@ -24,9 +24,14 @@ public class SceneCanvas extends JComponent{
 
         objects = new ArrayList<>();
         obstacles = new ArrayList<>();
-
+        
         // add objects by increasing z-order here
+        objects.add(new Background(50, 0));
+        objects.add(new Mountain(200, 150));
+        objects.add(new BackMountain(300, 250));
         objects.add(player);
+
+        System.out.println(objects.get(1).getY());
     }
 
     @Override

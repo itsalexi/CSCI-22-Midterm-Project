@@ -13,7 +13,7 @@ public abstract class ParallaxObject extends DrawingObject{
     @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
-        g2d.translate(this.getX(), 0);
+        g2d.translate(this.getX(), this.getY());
         drawElements(g2d);
         g2d.translate(800, 0);
         drawElements(g2d);
