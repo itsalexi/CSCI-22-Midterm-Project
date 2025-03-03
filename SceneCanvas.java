@@ -26,8 +26,8 @@ public class SceneCanvas extends JComponent {
 
         // add objects by increasing z-order here
         objects.add(new Background(50, 0));
-        objects.add(new Mountain(200, 0));
-        objects.add(new BackMountain(300, 0));
+        objects.add(new FrontBuilding(200, 0));
+        objects.add(new BackBuilding(300, 0));
         objects.add(new Ground(50, 0));
 
         objects.add(player);

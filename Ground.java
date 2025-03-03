@@ -8,6 +8,9 @@ public class Ground extends ParallaxObject {
 
   @Override
   public void drawElements(Graphics2D g2d) {
+    g2d.setColor(new Color(175, 178, 187));
+    g2d.fill(new Rectangle2D.Double(0, 540, 800, 10.4));
+    g2d.fill(new Rectangle2D.Double(0, 504.6, 800, 7.7));
 
     g2d.setColor(new Color(75, 87, 97));
     g2d.fill(new Rectangle2D.Double(0, 556.7, 800, 43.3));
@@ -31,9 +34,8 @@ public class Ground extends ParallaxObject {
     g2d.fill(new Rectangle2D.Double(752.2, 510.6, 9.5, 34.6));
     g2d.fill(new Rectangle2D.Double(795.9, 510.6, 9.5, 34.6));
 
-
-    g2d.setColor(new Color(175, 178, 187));
-    g2d.fill(new Rectangle2D.Double(0, 540, 800, 10.4));
+    g2d.setColor(new Color(52, 69, 83));
+    g2d.fill(new Rectangle2D.Double(0, 550.4, 800, 8.3));
 
   }
 

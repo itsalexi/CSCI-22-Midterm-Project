@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Mountain extends ParallaxObject {
-  public Mountain(double s, double y) {
+public class BackBuilding extends ParallaxObject {
+  public BackBuilding(double s, double y) {
     super(0, y, s);
   }
 
@@ -48,6 +48,27 @@ public class Mountain extends ParallaxObject {
     g2d.fill(new Rectangle2D.Double(730.8, 407.4, 5, 6.5));
     g2d.fill(new Rectangle2D.Double(737.8, 351.1, 58.1, 136));
     g2d.fill(new Rectangle2D.Double(795, 402.3, 5.1, 84.7));
+
+    g2d.setColor(new Color(164, 177, 224));
+    g2d.fill(new Rectangle2D.Double(0, 490.5, 800, 54.7));
+
+    g2d.setColor(new Color(120, 152, 200));
+    g2d.fill(new Rectangle2D.Double(0, 490.5, 53.3, 49.5));
+    g2d.fill(new Rectangle2D.Double(52.3, 490.5, 24.8, 9.1));
+    g2d.fill(new Rectangle2D.Double(76.5, 490.5, 75.9, 49.5));
+    g2d.fill(new Rectangle2D.Double(150.1, 490.5, 37.1, 32.2));
+    g2d.fill(new Rectangle2D.Double(186.2, 490.5, 26.6, 49.5));
+    g2d.fill(new Rectangle2D.Double(212.2, 490.5, 37.1, 32.2));
+    g2d.fill(new Rectangle2D.Double(246.8, 490.5, 75, 49.5));
+    g2d.fill(new Rectangle2D.Double(319.6, 490.5, 71.4, 32.2));
+    g2d.fill(new Rectangle2D.Double(390.3, 490.5, 30.9, 45.5));
+    g2d.fill(new Rectangle2D.Double(420.3, 490.5, 68.5, 49.2));
+    g2d.fill(new Rectangle2D.Double(487.2, 490.5, 29.7, 32.4));
+    g2d.fill(new Rectangle2D.Double(515.5, 490.5, 24.3, 43.2));
+    g2d.fill(new Rectangle2D.Double(537.9, 490.5, 81.4, 32.4));
+    g2d.fill(new Rectangle2D.Double(618.3, 490.5, 63.6, 49.2));
+    g2d.fill(new Rectangle2D.Double(680.3, 490.5, 33.4, 8.1));
+    g2d.fill(new Rectangle2D.Double(712.5, 490.5, 89.4, 49.5));
 
   }
 
