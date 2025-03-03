@@ -1,13 +1,11 @@
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.*;
 
 public class Dino extends DrawingObject {
 
-    private double width;
-    private double height;
     private int spriteIndex;
     private ArrayList<PixelGrid> sprites;
-    private boolean isAlive;
 
     public Dino(double x, double y) {
         super(x, y);
@@ -703,7 +701,10 @@ public class Dino extends DrawingObject {
 
     @Override
     public void drawElements(Graphics2D g2d) {
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(0, -sprites.get(spriteIndex).getHeight());
         sprites.get(spriteIndex).draw(g2d);
+        g2d.setTransform(reset);
     }
 
     public double getWidth() {
