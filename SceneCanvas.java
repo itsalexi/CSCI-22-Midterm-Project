@@ -1,9 +1,8 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
+import javax.swing.*;
 
-public class SceneCanvas extends JComponent{
+public class SceneCanvas extends JComponent {
 
     private ArrayList<DrawingObject> objects;
     private double score, baseSpeed;
@@ -12,8 +11,8 @@ public class SceneCanvas extends JComponent{
     private boolean running;
     private int lastObstacle;
     private ArrayList<Obstacle> obstacles;
-    
-    public SceneCanvas(){
+
+    public SceneCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
         player = new Player(100, 300);
 
@@ -24,57 +23,59 @@ public class SceneCanvas extends JComponent{
 
         objects = new ArrayList<>();
         obstacles = new ArrayList<>();
-        
+
         // add objects by increasing z-order here
         objects.add(new Background(50, 0));
-        objects.add(new Mountain(200, 150));
-        objects.add(new BackMountain(300, 250));
+        objects.add(new Mountain(200, 0));
+        objects.add(new BackMountain(300, 0));
+        objects.add(new Ground(50, 0));
+
         objects.add(player);
 
         System.out.println(objects.get(1).getY());
     }
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        for(DrawingObject o : objects){
+        for (DrawingObject o : objects) {
             o.draw(g2d);
         }
-        for(DrawingObject o : obstacles){
+        for (DrawingObject o : obstacles) {
             o.draw(g2d);
         }
     }
 
-    public void gameUpdate(int t){
+    public void gameUpdate(int t) {
         lastObstacle += t;
-        for(DrawingObject o : objects){
+        for (DrawingObject o : objects) {
             o.update(t);
         }
-        for(Obstacle o : obstacles){
+        for (Obstacle o : obstacles) {
             o.update(t);
-            if(o.getHitBox().intersects(player.getHitBox())){
+            if (o.getHitBox().intersects(player.getHitBox())) {
                 running = false;
                 player.die();
             }
         }
-        if(lastObstacle > 1000){
+        if (lastObstacle > 1000) {
             // random obstacle logic
         }
     }
 
-    public void jump(){
+    public void jump() {
         player.jump();
     }
 
-    public void duck(){
+    public void duck() {
         player.duck();
     }
 
-    public void unDuck(){
+    public void unDuck() {
         player.unDuck();
     }
 
-    public boolean isRunning(){
+    public boolean isRunning() {
         return running;
     }
 }
