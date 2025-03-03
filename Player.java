@@ -27,7 +27,7 @@ public class Player extends DrawingObject {
 
   public void jump() {
     if (speed == 0 && this.getY() == baseY && !isDucking) {
-      speed = 500;
+      speed = 1200;
       sprite.setSprite(0);
       try {
         Clip clip = AudioSystem.getClip();
@@ -44,7 +44,7 @@ public class Player extends DrawingObject {
     if (!isAlive) {
       sprite.setSprite(3);
     } else {
-      this.accelerate(-1000, t);
+      this.accelerate(-4000, t);
       this.setPosition(this.getX(), this.getY() - speed * t / 1000);
       runningDuration += t;
       if (isDucking) {
@@ -86,6 +86,9 @@ public class Player extends DrawingObject {
     if (this.getY() == baseY && !isDucking) {
       sprite.setSprite(4);
       isDucking = true;
+    }
+    if(this.getY() != baseY){
+      speed -= 1000;
     }
   }
 

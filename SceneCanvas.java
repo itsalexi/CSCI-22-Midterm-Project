@@ -14,7 +14,7 @@ public class SceneCanvas extends JComponent {
 
     public SceneCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
-        player = new Player(100, 300);
+        player = new Player(50, 570);
 
         score = 1;
         baseSpeed = 10;
