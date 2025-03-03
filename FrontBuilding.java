@@ -2,8 +2,15 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class FrontBuilding extends ParallaxObject {
+  private Boolean isNight;
+
   public FrontBuilding(double s, double y) {
     super(0, y, s);
+    isNight = true;
+  }
+
+  public void toggleNight() {
+    isNight = !isNight;
   }
 
   @Override
@@ -70,6 +77,42 @@ public class FrontBuilding extends ParallaxObject {
     g2d.fill(new Rectangle2D.Double(680.3, 490.5, 33.4, 8.1));
     g2d.fill(new Rectangle2D.Double(712.5, 490.5, 89.4, 49.5));
 
+    if (isNight) {
+      g2d.setColor(new Color(246, 255, 117, 100));
+      g2d.fill(new Rectangle2D.Double(3.8, 409.8, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(29.9, 434.4, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(85, 398.9, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(121.4, 399.1, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(196.2, 380.7, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(256.1, 348.1, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(292.4, 347.8, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(292.4, 392.3, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(431, 397, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(466, 431.8, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(630, 398.6, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(653.3, 434.4, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(716.5, 427.9, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(747, 363.5, 13.4, 18));
+      g2d.fill(new Rectangle2D.Double(778, 405.9, 13.4, 18));
+
+      g2d.setColor(new Color(246, 255, 117, 255));
+      g2d.fill(new Rectangle2D.Double(6.6, 412.4, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(32.7, 437, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(87.7, 401.6, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(124.2, 401.6, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(199, 383.3, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(258.9, 350.7, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(295.3, 350.7, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(295.3, 394.4, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(433.1, 399.5, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(469.7, 434.1, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(633.5, 401.1, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(656.2, 437, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(719.7, 429.8, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(749.8, 365.3, 13.4, 14.8));
+      g2d.fill(new Rectangle2D.Double(781, 408.5, 13.4, 14.8));
+
+    }
   }
 
 }
