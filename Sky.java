@@ -49,12 +49,7 @@ public class Sky extends ParallaxObject {
     objects.add(new Cloud(550, 115, 0));
     objects.add(new Cloud(585, 105, 1));
     objects.add(new Cloud(640, 136, 0));
-    objects.add(new Cloud(625, 126, 1));
-    objects.add(new Cloud(686, 115, 1));
-    objects.add(new Cloud(712, 165, 0));
-    objects.add(new Cloud(743, 126, 1));
 
-    objects.add(new Cloud(800, 110, 1));
 
   }
   
