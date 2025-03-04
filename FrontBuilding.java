@@ -2,15 +2,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class FrontBuilding extends ParallaxObject {
-  private Boolean isNight;
 
   public FrontBuilding(double s, double y) {
     super(0, y, s);
-    isNight = true;
-  }
-
-  public void toggleNight() {
-    isNight = !isNight;
   }
 
   @Override
@@ -77,7 +71,7 @@ public class FrontBuilding extends ParallaxObject {
     g2d.fill(new Rectangle2D.Double(680.3, 490.5, 33.4, 8.1));
     g2d.fill(new Rectangle2D.Double(712.5, 490.5, 89.4, 49.5));
 
-    if (isNight) {
+    if (this.getTime() > 0.5) {
       g2d.setColor(new Color(246, 255, 117, 100));
       g2d.fill(new Rectangle2D.Double(3.8, 409.8, 13.4, 18));
       g2d.fill(new Rectangle2D.Double(29.9, 434.4, 13.4, 18));
