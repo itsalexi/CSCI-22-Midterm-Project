@@ -35,7 +35,7 @@ public class SceneCanvas extends JComponent {
         objects.add(new BackBuilding(200, 0));
         objects.add(new FrontBuilding(300, 0));
         objects.add(new Ground(400, 0));
-        
+        objects.add(new Menu());
         objects.add(obstacleGenerator);
         objects.add(player);
 
@@ -68,6 +68,10 @@ public class SceneCanvas extends JComponent {
         }
     }
 
+    public void toggleRunning() {
+        running = !running;
+    }
+
     public void jump() {
         player.jump();
     }
@@ -84,7 +88,7 @@ public class SceneCanvas extends JComponent {
         return running;
     }
 
-    public double getScore(){
+    public double getScore() {
         return score;
     }
 }

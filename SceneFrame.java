@@ -1,8 +1,7 @@
-import java.awt.RenderingHints.Key;
 import java.awt.event.*;
-import javax.swing.*;
 import java.io.File;
 import javax.sound.sampled.*;
+import javax.swing.*;
 
 class SceneFrame{
 
