@@ -65,7 +65,7 @@ public class Player extends DrawingObject {
   }
 
   public Rectangle2D getHitBox() {
-    return new Rectangle2D.Double(this.getX(), this.getY(), sprite.getWidth(), sprite.getHeight());
+    return new Rectangle2D.Double(this.getX(), this.getY() - sprite.getHeight(), sprite.getWidth(), sprite.getHeight());
   }
 
   public void die() {
