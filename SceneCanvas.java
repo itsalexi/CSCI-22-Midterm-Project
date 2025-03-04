@@ -1,3 +1,26 @@
+
+/**
+ * The SceneCanvas class represents the game scene in the window.
+ * It is responsible for drawing all objects, updating the game state, 
+ * and handling interactions between the player and the obstacles.
+ * It also handles the time of day and displays the score.
+ * 
+ * @author Alexi Roth Luis A. Canamo (245333)
+ * @author Kenaz R. Celestino (241051)
+ * @version March 5, 2025
+ * 
+ * I have not discussed the Java language code in my program 
+ * with anyone other than my instructor or the teaching assistants 
+ * assigned to this course.
+ * 
+ * I have not used Java language code obtained from another student, 
+ * or any other unauthorized source, either modified or unmodified.
+ * 
+ * If any Java language code or documentation used in my program 
+ * was obtained from another source, such as a textbook or website, 
+ * that has been clearly noted with a proper citation in the comments 
+ * of my program.
+ **/
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -15,6 +38,10 @@ public class SceneCanvas extends JComponent {
     private boolean dayToNight;
     private JLabel scoreLabel;
 
+    /**
+     * Constructs the SceneCanvas object, initializing game objects, parallax
+     * objects,
+     */
     public SceneCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
         this.setLayout(null);
@@ -57,6 +84,11 @@ public class SceneCanvas extends JComponent {
 
     }
 
+    /**
+     * Paints the scene by drawing all objects on the canvas.
+     * 
+     * @param g the Graphics object used to draw the scene
+     */
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -66,6 +98,14 @@ public class SceneCanvas extends JComponent {
         obstacleGenerator.draw(g2d);
     }
 
+    /**
+     * Updates the game state by accelerating the player, adding time, checking
+     * collisions,
+     * generating new obstacles, and updating the day-night cycle. It also updates
+     * the score.
+     * 
+     * @param t the time interval
+     */
     public void gameUpdate(int t) {
         scoreLabel.setText(String.format("%d", (int) score));
 
@@ -98,34 +138,70 @@ public class SceneCanvas extends JComponent {
         }
     }
 
+    /**
+     * Sets the running state of the game.
+     * 
+     * @param b true if the game is running, false otherwise
+     */
     public void setRunning(boolean b) {
         running = b;
     }
 
+    /**
+     * Makes the player jump.
+     */
     public void jump() {
         player.jump();
     }
 
+    /**
+     * Makes the player duck.
+     */
     public void duck() {
         player.duck();
     }
 
+    /**
+     * Makes the player stop ducking.
+     */
     public void unDuck() {
         player.unDuck();
     }
 
+    /**
+     * Returns whether the game is still running.
+     * 
+     * @return true if the game is running, false otherwise
+     */
     public boolean isRunning() {
         return running;
     }
 
+    /**
+     * Returns the current score of the game.
+     * 
+     * @return the score
+     */
     public double getScore() {
         return score;
     }
 
+    /**
+     * Accelerates the game speed based on the given acceleration and elapsed time.
+     * 
+     * @param a the acceleration to apply
+     * @param t the time interval
+     */
     public void accelerate(double a, int t) {
         speed += a * t / 1000;
     }
 
+    /**
+     * Adds time to the game and adjusts the day-night cycle based on the speed.
+     * It also increases the score as the game progresses.
+     * 
+     * @param t the time interval
+     */
     public void addTime(int t) {
         if (!dayToNight) {
             time += speed * t / 1000000;

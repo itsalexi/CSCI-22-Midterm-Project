@@ -1,3 +1,24 @@
+
+/**
+ * The Dino class represents a dinosaur object in the game.
+ * It extends the DrawingObject class and uses a collection of PixelGrid sprites.
+ * 
+ * @author Alexi Roth Luis A. Canamo (245333)
+ * @author Kenaz R. Celestino (241051)
+ * @version March 5, 2025
+ * 
+ * I have not discussed the Java language code in my program 
+ * with anyone other than my instructor or the teaching assistants 
+ * assigned to this course.
+ * 
+ * I have not used Java language code obtained from another student, 
+ * or any other unauthorized source, either modified or unmodified.
+ * 
+ * If any Java language code or documentation used in my program 
+ * was obtained from another source, such as a textbook or website, 
+ * that has been clearly noted with a proper citation in the comments 
+ * of my program.
+ */
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.*;
@@ -7,6 +28,12 @@ public class Dino extends DrawingObject {
     private int spriteIndex;
     private ArrayList<PixelGrid> sprites;
 
+    /**
+     * Constructs a Dino object at the specified coordinates.
+     * 
+     * @param x the X-coordinate of the dinosaur
+     * @param y the Y-coordinate of the dinosaur
+     */
     public Dino(double x, double y) {
         super(x, y);
         spriteIndex = 0;
@@ -700,6 +727,11 @@ public class Dino extends DrawingObject {
 
     }
 
+    /**
+     * Draws the current sprite of the dinosaur on the provided Graphics2D object.
+     * 
+     * @param g2d the Graphics2D object used for rendering
+     */
     @Override
     public void drawElements(Graphics2D g2d) {
         AffineTransform reset = g2d.getTransform();
@@ -708,22 +740,48 @@ public class Dino extends DrawingObject {
         g2d.setTransform(reset);
     }
 
+    /**
+     * Returns the width of the current sprite.
+     * 
+     * @return the width of the sprite
+     */
     public double getWidth() {
         return sprites.get(spriteIndex).getWidth();
     }
 
+    /**
+     * Returns the height of the current sprite.
+     * 
+     * @return the height of the sprite
+     */
     public double getHeight() {
         return sprites.get(spriteIndex).getHeight();
     }
 
+    /**
+     * Sets the sprite index to a new value.
+     * 
+     * @param i the new sprite index
+     */
     public void setSprite(int i) {
         spriteIndex = i;
     }
 
+    /**
+     * Returns the current sprite index.
+     * 
+     * @return the sprite index
+     */
     public int getSprite() {
         return spriteIndex;
     }
 
+    /**
+     * Returns the PixelGrid sprite at the specified index.
+     * 
+     * @param i the index of the sprite
+     * @return the PixelGrid sprite at the given index
+     */
     public PixelGrid getSprite(int i) {
         return sprites.get(i);
     }

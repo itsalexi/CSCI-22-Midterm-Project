@@ -1,9 +1,38 @@
+
+/**
+ * The Sky class represents a parallax sky that contains different
+ * sky objects. It extends the ParallaxObject class.
+ * 
+ * @author Alexi Roth Luis A. Canamo (245333)
+ * @author Kenaz R. Celestino (241051)
+ * @version March 5, 2025
+ * 
+ * I have not discussed the Java language code in my program 
+ * with anyone other than my instructor or the teaching assistants 
+ * assigned to this course.
+ * 
+ * I have not used Java language code obtained from another student, 
+ * or any other unauthorized source, either modified or unmodified.
+ * 
+ * If any Java language code or documentation used in my program 
+ * was obtained from another source, such as a textbook or website, 
+ * that has been clearly noted with a proper citation in the comments 
+ * of my program.
+ */
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Sky extends ParallaxObject {
   private ArrayList<DrawingObject> objects;
 
+  /**
+   * Constructs a Sky object with the specified speed and initial
+   * Y-coordinate. It also initializes different cloud objects
+   * to be drawn on the sky later.
+   * 
+   * @param s the speed of the sky in the parallax effect
+   * @param y the initial Y-coordinate of the sky
+   */
   public Sky(int s, double y) {
     super(0, y, s);
     objects = new ArrayList<>();
@@ -29,6 +58,11 @@ public class Sky extends ParallaxObject {
 
   }
 
+  /**
+   * Draws the sky
+   * 
+   * @param g2d the Graphics2D object used for rendering
+   */
   @Override
   public void drawElements(Graphics2D g2d) {
     for (DrawingObject o : objects) {
