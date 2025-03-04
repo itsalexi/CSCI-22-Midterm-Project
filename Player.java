@@ -27,7 +27,7 @@ public class Player extends DrawingObject {
 
   public void jump() {
     if (speed == 0 && this.getY() == baseY && !isDucking) {
-      speed = 1200;
+      speed = 1337;
       sprite.setSprite(0);
       try {
         Clip clip = AudioSystem.getClip();
@@ -42,7 +42,7 @@ public class Player extends DrawingObject {
 
   public void update(int t) {
     if (isAlive) {
-      this.accelerate(-4000, t);
+      this.accelerate(-3000, t);
       this.setPosition(this.getX(), this.getY() - speed * t / 1000);
       runningDuration += t;
       if (isDucking) {
@@ -65,7 +65,7 @@ public class Player extends DrawingObject {
   }
 
   public Rectangle2D getHitBox() {
-    return new Rectangle2D.Double(this.getX(), this.getY() - sprite.getHeight(), sprite.getWidth(), sprite.getHeight());
+    return new Rectangle2D.Double(this.getX(), this.getY() - sprite.getHeight(), sprite.getWidth()-20, sprite.getHeight());
   }
 
   public void die() {

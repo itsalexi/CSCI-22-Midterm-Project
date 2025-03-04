@@ -96,6 +96,17 @@ public class Obstacle extends ParallaxObject {
         sprites.get(spriteIndex).draw(g2d);
     }
 
+    @Override
+    public void draw(Graphics2D g2d) {
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(this.getX(), this.getY());
+        drawElements(g2d);
+        g2d.setTransform(reset);
+        if (this.getX() <= -800) {
+            this.setPosition(0, this.getY());
+        }
+    }
+
     public void setSprite(int i) {
         spriteIndex = i;
     }
@@ -106,8 +117,8 @@ public class Obstacle extends ParallaxObject {
 
     public Rectangle2D getHitBox() {
         System.out.printf("X:%.1f Y:%.1f W:%.1f H:%.1f\n", this.getX(), this.getY(),
-        sprites.get(spriteIndex).getWidth(),
-        sprites.get(spriteIndex).getHeight());
+                sprites.get(spriteIndex).getWidth(),
+                sprites.get(spriteIndex).getHeight());
         return new Rectangle2D.Double(this.getX(), this.getY(),
                 sprites.get(spriteIndex).getWidth(),
                 sprites.get(spriteIndex).getHeight());
