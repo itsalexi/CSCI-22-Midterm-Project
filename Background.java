@@ -24,11 +24,10 @@
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Background extends ParallaxObject {
-  private int[][] starPositions = {
-      { 50, 50 }, { 100, 80 }, { 200, 30 }, { 300, 60 },
-      { 400, 90 }, { 500, 40 }, { 600, 70 }, { 700, 20 }
-  };
+public class Background extends ParallaxObject{
+
+  private Sky sky;
+  private Stars stars;
 
   /**
    * Constructs a Background object with the specified speed and initial
@@ -39,6 +38,8 @@ public class Background extends ParallaxObject {
    */
   public Background(int s, double y) {
     super(0, y, s);
+    sky = new Sky(0);
+    stars = new Stars(0);
   }
 
   /**
@@ -69,25 +70,15 @@ public class Background extends ParallaxObject {
     g2d.setPaint(gradient);
     g2d.fill(new Rectangle2D.Double(0, 0, 800, 600));
 
-    if (this.getTime() > 0.5) {
-      drawStars(g2d, (int) this.getX(), (int) this.getY());
+    if(this.getTime() > 0.5){
+      sky.setAlpha(0);
+      stars.setAlpha((0.75 - Math.abs(0.75 - this.getTime())) * (1 / 0.75));
+    } else {
+      stars.setAlpha(0);
+      sky.setAlpha((0.5 - Math.abs(0.5 - this.getTime())) * 2);
     }
-
-  }
-
-  /**
-   * Draws stars on the background if it is nighttime.
-   * 
-   * @param g2d the Graphics2D object used for rendering
-   * @param x   the X-coordinate offset for the stars
-   * @param y   the Y-coordinate offset for the stars
-   */
-  private void drawStars(Graphics2D g2d, int x, int y) {
-    g2d.setColor(Color.white);
-    for (int[] pos : starPositions) {
-      int starX = pos[0];
-      int starY = pos[1];
-      g2d.fillOval(starX + x, starY + y, 3, 3);
-    }
+  
+    stars.draw(g2d);
+    sky.draw(g2d);
   }
 }

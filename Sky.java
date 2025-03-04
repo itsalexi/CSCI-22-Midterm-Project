@@ -19,22 +19,22 @@
  * that has been clearly noted with a proper citation in the comments 
  * of my program.
  */
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Sky extends ParallaxObject {
   private ArrayList<DrawingObject> objects;
+  private float alpha;
 
   /**
-   * Constructs a Sky object with the specified speed and initial
+   * Constructs a Sky object with the initial
    * Y-coordinate. It also initializes different cloud objects
    * to be drawn on the sky later.
    * 
-   * @param s the speed of the sky in the parallax effect
    * @param y the initial Y-coordinate of the sky
    */
-  public Sky(int s, double y) {
-    super(0, y, s);
+  public Sky(double y) {
+    super(0, y, 0);
     objects = new ArrayList<>();
 
     objects.add(new Cloud(50, 100, 0));
@@ -57,6 +57,11 @@ public class Sky extends ParallaxObject {
     objects.add(new Cloud(800, 110, 1));
 
   }
+  
+  private AlphaComposite makeComposite(float alpha) {
+    int type = AlphaComposite.SRC_OVER;
+    return(AlphaComposite.getInstance(type, alpha));
+  }
 
   /**
    * Draws the sky
@@ -65,9 +70,15 @@ public class Sky extends ParallaxObject {
    */
   @Override
   public void drawElements(Graphics2D g2d) {
+    Composite originalComposite = g2d.getComposite();
+    g2d.setComposite(makeComposite(alpha));
     for (DrawingObject o : objects) {
       o.draw(g2d);
     }
+    g2d.setComposite(originalComposite);
+  }
 
+  public void setAlpha(double a){
+    alpha = (float) a;
   }
 }

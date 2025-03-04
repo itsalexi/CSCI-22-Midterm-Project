@@ -37,6 +37,7 @@ public class SceneCanvas extends JComponent {
     private ArrayList<ParallaxObject> parallax;
     private boolean dayToNight;
     private JLabel scoreLabel;
+    private Sun sun;
 
     /**
      * Constructs the SceneCanvas object, initializing game objects, parallax
@@ -63,22 +64,22 @@ public class SceneCanvas extends JComponent {
         parallax = new ArrayList<>();
 
         Background bg = new Background(50, 0);
-        Sky sky = new Sky(50, 0);
         BackBuilding bb = new BackBuilding(100, 0);
         FrontBuilding fb = new FrontBuilding(200, 0);
         Ground g = new Ground(300, 0);
+        sun = new Sun(20, 20, 40, 40);
+
         parallax.add(bg);
-        parallax.add(sky);
         parallax.add(bb);
         parallax.add(fb);
         parallax.add(g);
 
         // add objects by increasing z-order here
         objects.add(bg);
-        objects.add(sky);
         objects.add(bb);
         objects.add(fb);
         objects.add(g);
+        objects.add(sun);
         objects.add(obstacleGenerator);
         objects.add(player);
 
@@ -118,6 +119,7 @@ public class SceneCanvas extends JComponent {
         }
         for (ParallaxObject o : parallax) {
             o.setTime(time);
+            o.accelerate(10, t);
         }
         obstacleGenerator.update(t);
         for (Obstacle o : obstacleGenerator.getObstacles()) {
@@ -204,10 +206,11 @@ public class SceneCanvas extends JComponent {
      */
     public void addTime(int t) {
         if (!dayToNight) {
-            time += speed * t / 1000000;
+            time += speed * t / 500000;
         } else {
-            time -= speed * t / 1000000;
+            time -= speed * t / 500000;
         }
+
         if (time > 1) {
             dayToNight = true;
             time = 1;
@@ -215,6 +218,13 @@ public class SceneCanvas extends JComponent {
             dayToNight = false;
             time = 0;
         }
-        score += speed / 100;
+
+        if (time > 0.7){
+            sun.setAlpha(0);
+        } else {
+            sun.setAlpha((0.35 - Math.abs(time - 0.35)) * (1 / 0.35));
+        }
+
+        score += speed / 200;
     }
 }
