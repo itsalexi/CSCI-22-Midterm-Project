@@ -26,7 +26,7 @@ public class SceneCanvas extends JComponent {
         running = true;
         lastObstacle = 0;
         time = 0;
-        speed = 1000/30;
+        speed = 1000 / 30;
         dayToNight = false;
 
         objects = new ArrayList<>();
@@ -38,8 +38,6 @@ public class SceneCanvas extends JComponent {
         BackBuilding bb = new BackBuilding(100, 0);
         FrontBuilding fb = new FrontBuilding(200, 0);
         Ground g = new Ground(300, 0);
-        
-
         parallax.add(bg);
         parallax.add(sky);
         parallax.add(bb);
@@ -52,11 +50,8 @@ public class SceneCanvas extends JComponent {
         objects.add(bb);
         objects.add(fb);
         objects.add(g);
-        objects.add(new Menu());
         objects.add(obstacleGenerator);
         objects.add(player);
-
-        
 
     }
 
@@ -70,31 +65,35 @@ public class SceneCanvas extends JComponent {
     }
 
     public void gameUpdate(int t) {
-        lastObstacle += t;
-        accelerate(1, t);
-        addTime(t);
-        System.out.println(time);
-        for (DrawingObject o : objects) {
-            o.update(t);
-        }
-        for (ParallaxObject o : parallax){
-            o.setTime(time);
-        }
-        obstacleGenerator.update(t);
-        for (Obstacle o : obstacleGenerator.getObstacles()) {
-            if (o.getHitBox().intersects(player.getHitBox())) {
-                running = false;
-                player.die();
+        System.out.println(t);
+        if (running) {
+            lastObstacle += t;
+            accelerate(1, t);
+            addTime(t);
+
+            for (DrawingObject o : objects) {
+                o.update(t);
+            }
+            for (ParallaxObject o : parallax) {
+                o.setTime(time);
+            }
+            obstacleGenerator.update(t);
+            for (Obstacle o : obstacleGenerator.getObstacles()) {
+                if (o.getHitBox().intersects(player.getHitBox())) {
+                    running = false;
+                    player.die();
+                }
+            }
+            if (lastObstacle > 3000) {
+                obstacleGenerator.generate();
+                lastObstacle = 0;
             }
         }
-        if (lastObstacle > 3000) {
-            obstacleGenerator.generate();
-            lastObstacle = 0;
-        }
+
     }
 
-    public void toggleRunning() {
-        running = !running;
+    public void setRunning(boolean b) {
+        running = b;
     }
 
     public void jump() {
@@ -117,20 +116,20 @@ public class SceneCanvas extends JComponent {
         return score;
     }
 
-    public void accelerate(double a, int t){
+    public void accelerate(double a, int t) {
         speed += a * t / 1000;
     }
 
-    public void addTime(int t){
-        if(!dayToNight){
+    public void addTime(int t) {
+        if (!dayToNight) {
             time += speed * t / 1000000;
         } else {
             time -= speed * t / 1000000;
         }
-        if(time > 1){
+        if (time > 1) {
             dayToNight = true;
             time = 1;
-        } else if (time < 0){
+        } else if (time < 0) {
             dayToNight = false;
             time = 0;
         }
