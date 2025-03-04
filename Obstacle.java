@@ -116,9 +116,6 @@ public class Obstacle extends ParallaxObject {
     }
 
     public Rectangle2D getHitBox() {
-        System.out.printf("X:%.1f Y:%.1f W:%.1f H:%.1f\n", this.getX(), this.getY(),
-                sprites.get(spriteIndex).getWidth(),
-                sprites.get(spriteIndex).getHeight());
         return new Rectangle2D.Double(this.getX(), this.getY(),
                 sprites.get(spriteIndex).getWidth(),
                 sprites.get(spriteIndex).getHeight());
