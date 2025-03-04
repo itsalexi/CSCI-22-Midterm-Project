@@ -13,9 +13,14 @@ public class SceneCanvas extends JComponent {
     private double time, speed;
     private ArrayList<ParallaxObject> parallax;
     private boolean dayToNight;
+    private JLabel scoreLabel;
 
     public SceneCanvas() {
         this.setPreferredSize(new Dimension(800, 600));
+        this.setLayout(null);
+        scoreLabel = new JLabel("", SwingConstants.RIGHT);
+        scoreLabel.setBounds(590, 10, 200, 30);
+        add(scoreLabel);
         player = new Player(50, 570);
         obstacleGenerator = new ObstacleGenerator(570, 200);
         Obstacle.setUpSprites();
@@ -59,10 +64,11 @@ public class SceneCanvas extends JComponent {
             o.draw(g2d);
         }
         obstacleGenerator.draw(g2d);
-        g2d.drawString(Integer.toString((int) score), 0, 0);
     }
 
     public void gameUpdate(int t) {
+        scoreLabel.setText(String.format("%d", (int) score));
+
         lastObstacle += t;
         accelerate(1, t);
         addTime(t);
@@ -70,7 +76,7 @@ public class SceneCanvas extends JComponent {
         for (DrawingObject o : objects) {
             o.update(t);
         }
-        for (ParallaxObject o : parallax){
+        for (ParallaxObject o : parallax) {
             o.setTime(time);
         }
         obstacleGenerator.update(t);
@@ -84,9 +90,13 @@ public class SceneCanvas extends JComponent {
             obstacleGenerator.generate();
             lastObstacle = 0;
         }
-    }
 
-    
+        if (dayToNight) {
+            scoreLabel.setForeground(Color.WHITE);
+        } else {
+            scoreLabel.setForeground(Color.BLACK);
+        }
+    }
 
     public void setRunning(boolean b) {
         running = b;

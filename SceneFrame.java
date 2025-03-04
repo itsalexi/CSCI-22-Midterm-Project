@@ -13,6 +13,7 @@ class SceneFrame {
     public SceneFrame() {
         sc = new SceneCanvas();
         f = new JFrame();
+
         lastUpdate = System.currentTimeMillis();
         ActionListener repaint = new ActionListener() {
             @Override
@@ -21,7 +22,7 @@ class SceneFrame {
                     int deltaTime = (int) (System.currentTimeMillis() - lastUpdate);
                     int prev = (int) sc.getScore() / 100;
                     sc.gameUpdate(deltaTime);
-                    if((int) sc.getScore() / 100 - prev == 1){
+                    if ((int) sc.getScore() / 100 - prev == 1) {
                         playSound("point");
                     }
                     f.repaint();
