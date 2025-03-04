@@ -113,7 +113,6 @@ public class SceneCanvas extends JComponent {
         lastObstacle += t;
         accelerate(1, t);
         addTime(t);
-        System.out.println(score);
         for (DrawingObject o : objects) {
             o.update(t);
         }
