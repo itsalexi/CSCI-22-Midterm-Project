@@ -4,10 +4,12 @@ import java.awt.geom.*;
 public abstract class ParallaxObject extends DrawingObject{
 
     private double speed;
+    private double time;
 
     public ParallaxObject(double x, double y, double s){
         super(x, y);
         speed = s;
+        time = 0;
     }
 
     @Override
@@ -35,5 +37,13 @@ public abstract class ParallaxObject extends DrawingObject{
 
     public void update(int t){
         setPosition(this.getX() - speed * t / 1000, this.getY());
+    }
+
+    public void setTime(double t){
+        time = t;
+    }
+
+    public double getTime(){
+        return time;
     }
 }
