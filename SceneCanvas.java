@@ -6,11 +6,9 @@ public class SceneCanvas extends JComponent {
 
     private ArrayList<DrawingObject> objects;
     private double score;
-    private JLabel scoreLabel, gameOverLabel;
     private Player player;
     private boolean running;
     private int lastObstacle;
-    private ArrayList<Obstacle> obstacles;
     private ObstacleGenerator obstacleGenerator;
     private double time, speed;
     private ArrayList<ParallaxObject> parallax;
@@ -30,7 +28,6 @@ public class SceneCanvas extends JComponent {
         dayToNight = false;
 
         objects = new ArrayList<>();
-        obstacles = new ArrayList<>();
         parallax = new ArrayList<>();
 
         Background bg = new Background(50, 0);
@@ -62,35 +59,34 @@ public class SceneCanvas extends JComponent {
             o.draw(g2d);
         }
         obstacleGenerator.draw(g2d);
+        g2d.drawString(Integer.toString((int) score), 0, 0);
     }
 
     public void gameUpdate(int t) {
-        System.out.println(t);
-        if (running) {
-            lastObstacle += t;
-            accelerate(1, t);
-            addTime(t);
-
-            for (DrawingObject o : objects) {
-                o.update(t);
-            }
-            for (ParallaxObject o : parallax) {
-                o.setTime(time);
-            }
-            obstacleGenerator.update(t);
-            for (Obstacle o : obstacleGenerator.getObstacles()) {
-                if (o.getHitBox().intersects(player.getHitBox())) {
-                    running = false;
-                    player.die();
-                }
-            }
-            if (lastObstacle > 3000) {
-                obstacleGenerator.generate();
-                lastObstacle = 0;
+        lastObstacle += t;
+        accelerate(1, t);
+        addTime(t);
+        System.out.println(score);
+        for (DrawingObject o : objects) {
+            o.update(t);
+        }
+        for (ParallaxObject o : parallax){
+            o.setTime(time);
+        }
+        obstacleGenerator.update(t);
+        for (Obstacle o : obstacleGenerator.getObstacles()) {
+            if (o.getHitBox().intersects(player.getHitBox())) {
+                running = false;
+                player.die();
             }
         }
-
+        if (lastObstacle > 3000) {
+            obstacleGenerator.generate();
+            lastObstacle = 0;
+        }
     }
+
+    
 
     public void setRunning(boolean b) {
         running = b;
@@ -133,5 +129,6 @@ public class SceneCanvas extends JComponent {
             dayToNight = false;
             time = 0;
         }
+        score += speed / 100;
     }
 }

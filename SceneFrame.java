@@ -9,24 +9,23 @@ class SceneFrame {
     private SceneCanvas sc;
     private Timer repaintTimer;
     private long lastUpdate;
-    private boolean isRunning;
 
     public SceneFrame() {
         sc = new SceneCanvas();
         f = new JFrame();
-        isRunning = true;
-
         lastUpdate = System.currentTimeMillis();
         ActionListener repaint = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sc.isRunning()) {
                     int deltaTime = (int) (System.currentTimeMillis() - lastUpdate);
+                    int prev = (int) sc.getScore() / 100;
                     sc.gameUpdate(deltaTime);
+                    if((int) sc.getScore() / 100 - prev == 1){
+                        playSound("point");
+                    }
                     f.repaint();
                     lastUpdate = System.currentTimeMillis();
-                } else {
-                    isRunning = false;
                 }
             }
         };
@@ -98,7 +97,6 @@ class SceneFrame {
         f.revalidate();
         f.repaint();
         lastUpdate = System.currentTimeMillis();
-        isRunning = true;
     }
 
 }
