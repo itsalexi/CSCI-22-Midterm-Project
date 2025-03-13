@@ -22,6 +22,7 @@
  * of my program.
  **/
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.*;
 import javax.swing.*;
 
@@ -122,10 +123,17 @@ public class SceneCanvas extends JComponent {
         }
         obstacleGenerator.update(t);
         for (Obstacle o : obstacleGenerator.getObstacles()) {
-            if (o.getHitBox().intersects(player.getHitBox())) {
+            Rectangle2D obstacleHitbox = o.getHitBox();
+            Rectangle2D playerHitbox = player.getHitBox();
+
+            if (!(playerHitbox.getX() + playerHitbox.getWidth() <= obstacleHitbox.getX() ||
+                    playerHitbox.getX() >= obstacleHitbox.getX() + obstacleHitbox.getWidth() ||
+                    playerHitbox.getY() + playerHitbox.getHeight() <= obstacleHitbox.getY() ||
+                    playerHitbox.getY() >= obstacleHitbox.getY() + obstacleHitbox.getHeight())) {
                 running = false;
                 player.die();
             }
+
         }
         if (lastObstacle > 3000) {
             obstacleGenerator.generate();
@@ -218,7 +226,7 @@ public class SceneCanvas extends JComponent {
             time = 0;
         }
 
-        if (time > 0.7){
+        if (time > 0.7) {
             sun.setAlpha(0);
         } else {
             sun.setAlpha((0.35 - Math.abs(time - 0.35)) * (1 / 0.35));
